@@ -15,8 +15,9 @@ function Form() {
         try{
             setLoading(true);
             const response = await axios.get('https://api.github.com/users/'+userName);
+            const repos = await axios.get('https://api.github.com/users/'+userName+'/repos');
+            response.data.repos = repos.data;
             navigate(`/${userName}`, {state: {user: response.data}});
-            console.log(response.data);
         }
         catch(error){
             console.error(error);
