@@ -37,7 +37,7 @@ function UserProfile() {
                 let commits = 0;
                 let stars = 0;
 
-                events.forEach((event) => {
+                events.forEach((event: { type: any; payload: { commits: string | any[]; }; }) => {
                     switch (event.type) {
                         case "PullRequestEvent":
                             pullRequests += 1;
