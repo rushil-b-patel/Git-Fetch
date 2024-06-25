@@ -8,7 +8,7 @@ function UserProfile() {
     const { userName } = useParams();
     const location = useLocation();
     const [user, setUser] = useState(location.state?.user || null);
-    const [repos, setRepos] = useState([]);
+    const [repos, setRepos] = useState<{ id: number; html_url: string; name: string; description: string }[]>([]);
     const [stats, setStats] = useState({
         followers: 0,
         public_repos: 0,
