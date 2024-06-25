@@ -40,12 +40,12 @@ function Form() {
                 type='text' 
                 value={userName} 
                 onChange={handleUserNameChange} 
-                className='text-white border rounded-full w-full sm:w-96 h-12 align-middle border-l-slate-100 pl-4' 
+                className='text-white border rounded-full w-3/4 xl:w-96 h-12 align-middle border-l-slate-100 pl-4' 
                 placeholder='Enter GitHub Username'>
             </input>
             <button
                 type='submit'
-                className='text-black bg-slate-300 rounded-full w-full sm:w-24 h-12'
+                className='text-black font-semibold bg-slate-300 rounded-full w-1/2 xl:w-24 h-12 hover:bg-slate-200'
             >
                 {loading ? 'Loading...' : 'Search'}
             </button>
