@@ -8,7 +8,7 @@ function UserProfile() {
     const { userName } = useParams();
     const location = useLocation();
     const [user, setUser] = useState(location.state?.user || null);
-    const [repos, setRepos] = useState<{ id: number; html_url: string; name:string; description:string }[]>([]);
+    const [repos, setRepos] = useState([]);
     const [stats, setStats] = useState({
         followers: 0,
         public_repos: 0,
@@ -19,7 +19,6 @@ function UserProfile() {
         commits: 0,
         stars: 0
     });
-
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -38,7 +37,7 @@ function UserProfile() {
                 let commits = 0;
                 let stars = 0;
 
-                events.forEach((event: any) => {
+                events.forEach((event) => {
                     switch (event.type) {
                         case "PullRequestEvent":
                             pullRequests += 1;
@@ -77,21 +76,21 @@ function UserProfile() {
     }, [userName]);
 
     return (
-        <div className="flex flex-col items-center min-h-screen text-white">
+        <div className="flex flex-col items-center min-h-screen text-white px-4 sm:px-0">
             {user && (
                 <>
-                    <div className="flex items-center max-w-screen-lg">
+                    <div className="flex flex-col sm:flex-row items-center max-w-screen-lg">
                         <a href={user.html_url} target="_blank" rel="noopener noreferrer">
                             <img
-                                className="rounded-full border-4 border-gray-600 w-48 h-48 mr-8"
+                                className="rounded-full border-4 border-gray-600 w-32 h-32 sm:w-48 sm:h-48 mb-4 sm:mb-0 sm:mr-8"
                                 src={user.avatar_url}
                                 alt={user.name}                            
                             />
                         </a>
 
-                        <div>
-                            <h2 className="text-white font-bold text-6xl">{user.name}</h2>
-                            <h3 className="text-gray-400 text-2xl">@{user.login.toLowerCase()}</h3>
+                        <div className="text-center sm:text-left">
+                            <h2 className="text-white font-bold text-4xl sm:text-6xl">{user.name}</h2>
+                            <h3 className="text-gray-400 text-xl sm:text-2xl">@{user.login.toLowerCase()}</h3>
 
                             <p className="py-2 font-semibold">
                                 <FaCalendar className="inline-block ml-0 mr-3" />
@@ -105,15 +104,15 @@ function UserProfile() {
                                 </span>
                             </p>
 
-                            <p className="text-gray-300 text-lg md:max-w-lg md:line-clamp-2">
+                            <p className="text-gray-300 text-lg sm:md:max-w-lg sm:line-clamp-2">
                                 {user.bio}
                             </p>
                         </div>
                     </div>
 
-                    <StatsCard stats={{ ...stats, login: user.login }} />
+                    <StatsCard stats={{ ...stats }} />
 
-                    <div className="max-w-screen-lg mx-auto mt-8">
+                    <div className="w-full mx-auto mt-8 sm:w-4/5 lg:w-2/3">
                         <h2 className="text-2xl font-semibold mb-4">Repositories</h2>
                         <ul>
                             {repos.map((repo) => (

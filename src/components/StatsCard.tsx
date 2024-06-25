@@ -1,6 +1,17 @@
-function StatsCard({ stats } : { stats:any}) {
+interface Stats{
+    followers: number;
+    public_repos: number;
+    organization: number;
+    public_gists: number;
+    pull_requests: number;
+    issues: number;
+    commits: number;
+    stars:number
+}
+
+const StatsCard: React.FC<{ stats: Stats }> = ({ stats }) => {
     return (
-        <div className="rounded-lg shadow-lg text-white mt-8 p-6 border border-gray-600">
+        <div className="rounded-lg shadow-lg text-white mt-8 p-6 border border-gray-600 w-full sm:w-4/5 lg:w-2/3">
             <h2 className="text-2xl font-semibold mb-4">GitHub Stats</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-gray-700">
                 <div className="py-4 border-b border-gray-700">
